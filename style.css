@@ -1,0 +1,18 @@
+h1{
+    width: 100vw;
+    background-color: rgb(33, 33, 124);
+    color: white;
+    line-height: 70px;
+}
+
+.addWindow{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+}
+.addWindow div{
+    width:200px;
+
+}
