@@ -1,18 +1,39 @@
 h1{
     width: 100vw;
-    background-color: rgb(33, 33, 124);
+    background-color: #0d6efd;
     color: white;
     line-height: 70px;
 }
+div.addContactWrapper {
+    position: fixed;
+    top: 70px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.233);
+    z-index: -10;
+    opacity: 0;
 
-.addWindow{
+}
+div.addContact {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
 
 }
-.addWindow div{
-    width:200px;
+.addContact label {
+    width: 80px;
+}
+.addContactCancel{
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+.addContact div{
+    margin-top: 7px;
+}
 
+ div.addContactWrapper.active {
+    opacity:1;
+    z-index: 100;
 }
