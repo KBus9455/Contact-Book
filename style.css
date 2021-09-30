@@ -37,3 +37,15 @@ div.addContact {
     opacity:1;
     z-index: 100;
 }
+.tableWrapper{
+    text-align: center;
+    position: absolute;
+    width: 80vw;
+    left: 50%;
+    top: 170px;
+    transform: translateX(-50%);
+}
+
+th{
+    width:450px;
+}
