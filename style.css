@@ -24,10 +24,13 @@ div.addContact {
 .addContact label {
     width: 80px;
 }
-.addContactCancel{
+.addContactButtons{
     width:100%;
     display: flex;
     justify-content: center;
+}
+.addContactButtons span{
+    width: 20px;
 }
 .addContact div{
     margin-top: 7px;

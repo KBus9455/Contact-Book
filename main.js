@@ -1,6 +1,6 @@
 const addContactButton = document.querySelector('button.add');
 const addContactWindow = document.querySelector('.addContactWrapper');
-const addContactCancelButton = document.querySelector('.addContactCancel button');
+const addContactCancelButton = document.querySelector('.addContactButtons button');
 
 
 const addContact=()=>{
