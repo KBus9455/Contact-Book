@@ -52,3 +52,11 @@ div.addContact {
 th{
     width:450px;
 }
+
+.alertFillFields {
+    position: fixed;
+    top:50%; 
+    left: 50%;
+    z-index: 20;
+    
+}
