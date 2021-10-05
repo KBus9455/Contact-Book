@@ -58,5 +58,12 @@ th{
     top:50%; 
     left: 50%;
     z-index: 20;
-    
+
+}
+
+tr:nth-child(even){
+    background-color:#ddd;
+}
+tr:hover {
+    font-weight: 800;
 }

@@ -45,8 +45,41 @@ contactsData = [{
         phone: "775756756",
         address: "Prosta 24",
         city: "Warszawa"
+    },{
+        name: "Katarzyna",
+        phone: "123456789",
+        address: "Cicha 4",
+        city: "Poznan"
 
-    }
+    }, {
+        name: "Grzegorz",
+        phone: "9764756765",
+        address: "Jasna 5",
+        city: "Rzeszow"
+
+    }, {
+        name: "Janek",
+        phone: "775756756",
+        address: "Prosta 24",
+        city: "Warszawa"
+    },{
+        name: "Katarzyna",
+        phone: "123456789",
+        address: "Cicha 4",
+        city: "Poznan"
+
+    }, {
+        name: "Grzegorz",
+        phone: "9764756765",
+        address: "Jasna 5",
+        city: "Rzeszow"
+
+    }, {
+        name: "Janek",
+        phone: "775756756",
+        address: "Prosta 24",
+        city: "Warszawa"
+    },
 
 ];
 loadTableData(contactsData);
