@@ -66,4 +66,5 @@ tr:nth-child(even){
 }
 tr:hover {
     font-weight: 800;
+    background-color:;
 }

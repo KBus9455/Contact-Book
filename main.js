@@ -28,68 +28,18 @@ addContactCancelButton.addEventListener('click', () => {
 
 // loading contacts form array 
 
-contactsData = [{
-        name: "Katarzyna",
-        phone: "123456789",
-        address: "Cicha 4",
-        city: "Poznan"
+loadTableData();
 
-    }, {
-        name: "Grzegorz",
-        phone: "9764756765",
-        address: "Jasna 5",
-        city: "Rzeszow"
-
-    }, {
-        name: "Janek",
-        phone: "775756756",
-        address: "Prosta 24",
-        city: "Warszawa"
-    },{
-        name: "Katarzyna",
-        phone: "123456789",
-        address: "Cicha 4",
-        city: "Poznan"
-
-    }, {
-        name: "Grzegorz",
-        phone: "9764756765",
-        address: "Jasna 5",
-        city: "Rzeszow"
-
-    }, {
-        name: "Janek",
-        phone: "775756756",
-        address: "Prosta 24",
-        city: "Warszawa"
-    },{
-        name: "Katarzyna",
-        phone: "123456789",
-        address: "Cicha 4",
-        city: "Poznan"
-
-    }, {
-        name: "Grzegorz",
-        phone: "9764756765",
-        address: "Jasna 5",
-        city: "Rzeszow"
-
-    }, {
-        name: "Janek",
-        phone: "775756756",
-        address: "Prosta 24",
-        city: "Warszawa"
-    },
-
-];
-loadTableData(contactsData);
-
-function loadTableData(contactsData){
+function loadTableData() {
     const tableBody = document.getElementById('tableData');
+    let itemsFromLocalStorage = localStorage.getItem('savedContacts');
+    let contactsData = JSON.parse(itemsFromLocalStorage);
     let dataHtml = "";
-    for (let contact of contactsData){
-        dataHtml += `<tr><td>${contact.name}</td><td>${contact.address}</td><td>${contact.phone}</td><td>${contact.city}</td></tr>`
-    };
+    if (contactsData !== null) {
+        for (let contact of contactsData) {
+            dataHtml += `<tr><td>${contact.name}</td><td>${contact.address}</td><td>${contact.phone}</td><td>${contact.city}</td></tr>`
+        };
+    }
     console.log(dataHtml);
     tableBody.innerHTML = dataHtml;
 }
@@ -108,32 +58,45 @@ const addContactSubmit = () => {
         return;
     }
 
+    let itemsFromLocalStorage = localStorage.getItem('savedContacts');
+    let contactsData = JSON.parse(itemsFromLocalStorage);
+    if (contactsData == null) {
+        contactsData = [];
+    }
+    contactsData.push({
+        name,
+        phone,
+        address,
+        city
+    });
+    localStorage.setItem("savedContacts", JSON.stringify(contactsData));
     clearInputs();
     addContactWindow.classList.toggle("active");
+    loadTableData();
 }
 
 addContactSubmitButton.addEventListener('click', addContactSubmit);
 
 
 
-    // const display = document.getElementById("display");
-    // let newRow = display.insertRow(row);
+// const display = document.getElementById("display");
+// let newRow = display.insertRow(row);
 
-    // // let cell1 = newRow.insertCell(0);
-    // // let cell2 = newRow.insertCell(1);
-    // // let cell3 = newRow.insertCell(2);
-    // // let cell4 = newRow.insertCell(3);
+// // let cell1 = newRow.insertCell(0);
+// // let cell2 = newRow.insertCell(1);
+// // let cell3 = newRow.insertCell(2);
+// // let cell4 = newRow.insertCell(3);
 
-    // // localStorage.setItem("name", name);
-    // // localStorage.setItem("phone", phone);
-    // // localStorage.setItem("address", address);
-    // // localStorage.setItem("city", city);
+// // localStorage.setItem("name", name);
+// // localStorage.setItem("phone", phone);
+// // localStorage.setItem("address", address);
+// // localStorage.setItem("city", city);
 
-    // // cell1.innerHTML = localStorage.name;
-    // // cell2.innerHTML = localStorage.phone;
-    // // cell3.innerHTML= localStorage.address;
-    // // cell4.innerHTML = localStorage.city;
+// // cell1.innerHTML = localStorage.name;
+// // cell2.innerHTML = localStorage.phone;
+// // cell3.innerHTML= localStorage.address;
+// // cell4.innerHTML = localStorage.city;
 
-    // // let jsonObj = { 'row': cell1.innerHTML };
-    // //   localStorage.setItem('row', JSON.stringify(jsonObj));
-    // //   cell1 = localStorage.getItem('row');
+// // let jsonObj = { 'row': cell1.innerHTML };
+// //   localStorage.setItem('row', JSON.stringify(jsonObj));
+// //   cell1 = localStorage.getItem('row');
