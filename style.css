@@ -66,5 +66,11 @@ tr:nth-child(even){
 }
 tr:hover {
     font-weight: 800;
-    background-color:;
+}
+tr button {
+    width: 15px;
+    height: 15px;
+    box-sizing: border-box;
+    line-height: 20px;
+    
 }

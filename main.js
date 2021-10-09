@@ -37,7 +37,7 @@ function loadTableData() {
     let dataHtml = "";
     if (contactsData !== null) {
         for (let contact of contactsData) {
-            dataHtml += `<tr><td>${contact.name}</td><td>${contact.address}</td><td>${contact.phone}</td><td>${contact.city}</td></tr>`
+            dataHtml += `<tr><td>${contact.name}</td><td>${contact.address}</td><td>${contact.phone}</td><td>${contact.city}</td><td><button><i class="fas fa-trash-alt"></i></button></td></tr>`
         };
     }
     console.log(dataHtml);
@@ -77,26 +77,3 @@ const addContactSubmit = () => {
 
 addContactSubmitButton.addEventListener('click', addContactSubmit);
 
-
-
-// const display = document.getElementById("display");
-// let newRow = display.insertRow(row);
-
-// // let cell1 = newRow.insertCell(0);
-// // let cell2 = newRow.insertCell(1);
-// // let cell3 = newRow.insertCell(2);
-// // let cell4 = newRow.insertCell(3);
-
-// // localStorage.setItem("name", name);
-// // localStorage.setItem("phone", phone);
-// // localStorage.setItem("address", address);
-// // localStorage.setItem("city", city);
-
-// // cell1.innerHTML = localStorage.name;
-// // cell2.innerHTML = localStorage.phone;
-// // cell3.innerHTML= localStorage.address;
-// // cell4.innerHTML = localStorage.city;
-
-// // let jsonObj = { 'row': cell1.innerHTML };
-// //   localStorage.setItem('row', JSON.stringify(jsonObj));
-// //   cell1 = localStorage.getItem('row');
