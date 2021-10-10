@@ -44,7 +44,9 @@ function loadTableData() {
     tableBody.innerHTML = dataHtml;
 }
 
-
+const test = function() {
+    console.log("test");
+}
 
 let row = 1;
 const addContactSubmit = () => {
