@@ -38,7 +38,7 @@ div.addContact {
 
  div.addContactWrapper.active {
     opacity:1;
-    z-index: 100;
+    z-index:20;
 }
 .tableWrapper{
     text-align: center;
@@ -73,4 +73,22 @@ tr button {
     box-sizing: border-box;
     line-height: 20px;
     
+}
+
+ .deleteInLine {
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    line-height: 10px;
+    font-size: 10px;
+    opacity: 0;
+    z-index: -10;
+}
+ .deleteInLine.active {
+     opacity: 1;
+     z-index: 100;
+ }
+
+ tr td:last-child, tr th:last-child{
+width: 100px;
 }
