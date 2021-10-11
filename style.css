@@ -89,6 +89,6 @@ tr button {
      z-index: 100;
  }
 
- tr td:last-child, tr th:last-child{
+ tr td:last-child, tr th:last-child, tr td:nth-child(1), tr th:nth-child(1){
 width: 100px;
 }

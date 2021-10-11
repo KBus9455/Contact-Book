@@ -3,6 +3,8 @@ const addContactWindow = document.querySelector('.addContactWrapper');
 const addContactCancelButton = document.querySelector('.addContactButtons button');
 const addContactSubmitButton = document.querySelector('.addContactButtons button.btn-success');
 const deleteContactButton = document.querySelector('button.delete');
+const display = document.querySelector("#display");
+let deleteButtonsArray = [...display.querySelectorAll("button")];
 
 // Display window to add new contact 
 
@@ -39,12 +41,14 @@ function loadTableData() {
     let contactsData = JSON.parse(itemsFromLocalStorage);
     let dataHtml = "";
     if (contactsData !== null) {
+        let id = 1;
         for (let contact of contactsData) {
-            dataHtml += `<tr><td>${contact.name}</td><td>${contact.address}</td><td>${contact.phone}</td><td>${contact.city}</td><td><button type="button" class="btn btn-danger deleteInLine">X</button></td></tr>`
+            dataHtml += `<tr><td>${id}</td><td>${contact.name}</td><td>${contact.address}</td><td>${contact.phone}</td><td>${contact.city}</td><td><button type="button" class="btn btn-danger deleteInLine">X</button></td></tr>`
+            id++;
         };
     }
     tableBody.innerHTML = dataHtml;
-
+  deleteButtonsArray = [...display.querySelectorAll("button")];
 }
 
 let row = 1;
@@ -60,7 +64,7 @@ const addContactSubmit = () => {
     }
     let itemsFromLocalStorage = localStorage.getItem('savedContacts');
     let contactsData = JSON.parse(itemsFromLocalStorage);
-    if (contactsData == null) {
+    if (contactsData === null) {
         contactsData = [];
     }
     contactsData.push({
@@ -78,11 +82,16 @@ addContactSubmitButton.addEventListener('click', addContactSubmit);
 
 
 // Delete contact:
-const display = document.querySelector("#display");
-const deleteButtonsArray = [...display.querySelectorAll("button")];
-deleteContactButton.addEventListener("click", function () {
+
+const removeActive = function (){
     deleteButtonsArray.forEach(button => {
         button.classList.toggle('active')
     });
-    console.log("dziala");
-})
+}
+deleteContactButton.addEventListener("click", removeActive);
+
+
+const removeElement = function(){
+    let index;
+    
+}
