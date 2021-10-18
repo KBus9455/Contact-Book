@@ -93,7 +93,7 @@ tr:nth-child(even) {
 }
 
 tr:hover {
-    font-weight: 800;
+  background-color: rgb(170, 194, 245);
 }
 
 tr button {
@@ -103,6 +103,7 @@ tr button {
     line-height: 20px;
 
 }
+i{color:rgb(128, 128, 128);}
 
 .deleteInLine {
     margin: 0;
@@ -122,6 +123,9 @@ tr button {
 tr td:last-child,
 tr th:last-child,
 tr td:nth-child(1),
-tr th:nth-child(1) {
-    width: 100px;
+tr th:nth-child(1),
+tr td:nth-last-child(2),
+tr th:nth-last-child(2)
+    {
+    width: 60px;
 }
