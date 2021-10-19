@@ -10,7 +10,7 @@ let editButtonsArray;
 let contactsData;
 
 // current item:
-let currentContact;
+let currentContactId = null;
 
 
 // Display window to add new contact 
@@ -126,6 +126,23 @@ const fillInputs = function (id){
  document.querySelector("#city").value = contactsData[id].city;
 }
 
+const updateContact = function(){
+ console.log("test");
+
+contactsData[currentContactId].name= document.querySelector("#name").value;
+contactsData[currentContactId].phone = document.querySelector("#phone").value;
+contactsData[currentContactId].address= document.querySelector("#address").value;
+contactsData[currentContactId].city= document.querySelector("#city").value;
+
+    localStorage.setItem("savedContacts", JSON.stringify(contactsData));
+    clearInputs();
+    addContactWindow.classList.remove("active");
+    loadTableData();
+
+}
+
+editContactSubmitButton.addEventListener('click',updateContact);
+
 
 const editContact = function (e){
     e.preventDefault();
@@ -133,8 +150,11 @@ showAddContactWindow();
 changeWindowToEditContact();
 const listId = e.target.parentNode.parentNode;
 const id = listId.querySelector("td").textContent;
+currentContactId = parseInt(id)-1;
 console.log(id);
-fillInputs(id);
+fillInputs(currentContactId);
+
+console.log("actual contact Id " + currentContactId);
 }
 
 editButtonsArray.forEach(function(button){
