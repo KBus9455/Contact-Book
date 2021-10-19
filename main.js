@@ -19,9 +19,9 @@ const showAddContactWindow = () => {
     deleteButtonsArray.forEach(button => {
         button.classList.remove('active')
     });
-      document.querySelector("div.title").textContent = "Add contact"; 
-     editContactSubmitButton.style.display = "none";
-     addContactSubmitButton.style.display = "inline";
+    document.querySelector("div.title").textContent = "Add contact";
+    editContactSubmitButton.style.display = "none";
+    addContactSubmitButton.style.display = "inline";
     addContactWindow.classList.toggle("active");
 }
 
@@ -39,7 +39,7 @@ const clearInputs = function () {
 addContactCancelButton.addEventListener('click', (e) => {
     e.preventDefault();
     addContactWindow.classList.toggle("active");
-         editContactSubmitButton.style.display = "inline";
+    editContactSubmitButton.style.display = "inline";
     clearInputs();
 })
 
@@ -55,16 +55,16 @@ function loadTableData() {
     if (contactsData !== null) {
         let id = 1;
         for (let contact of contactsData) {
-            dataHtml += `<tr><td>${id}</td><td>${contact.name}</td><td>${contact.address}</td><td>${contact.phone}</td><td>${contact.city}</td><td><i class="fas fa-pencil-alt"></i></td><td><button type="button" class="btn btn-danger deleteInLine">X</button></td></tr>`
+            dataHtml += `<tr><td>${id}.</td><td>${contact.name}</td><td>${contact.address}</td><td>${contact.phone}</td><td>${contact.city}</td><td><i class="fas fa-pencil-alt"></i></td><td><button type="button" class="btn btn-danger deleteInLine">X</button></td></tr>`
             id++;
         };
     }
     tableBody.innerHTML = dataHtml;
-  deleteButtonsArray = [...display.querySelectorAll("button")];
-  editButtonsArray = [...document.querySelectorAll("i")];
+    deleteButtonsArray = [...display.querySelectorAll("button")];
+    editButtonsArray = [...document.querySelectorAll("i")];
 }
 
-let row = 1;
+
 const addContactSubmit = () => {
     let name = document.getElementById("name").value;
     let phone = document.getElementById("phone").value;
@@ -77,6 +77,7 @@ const addContactSubmit = () => {
         alert("Fill in all fields");
         return;
     }
+
     let itemsFromLocalStorage = localStorage.getItem('savedContacts');
     let contactsData = JSON.parse(itemsFromLocalStorage);
     if (contactsData === null) {
@@ -98,41 +99,59 @@ addContactSubmitButton.addEventListener('click', addContactSubmit);
 
 // Delete contact:
 
-const removeActive = function (){
+// showDelete icon: 
+const removeActive = function () {
     deleteButtonsArray.forEach(button => {
         button.classList.toggle('active')
     });
 }
 deleteContactButton.addEventListener("click", removeActive);
 
+// delete element
+const removeElement = function (e) {
+    e.preventDefault();
+    const listId = e.target.parentNode.parentNode;
+    const id = listId.querySelector("td").textContent;
+    currentContactId = parseInt(id) - 1;
+contactsData.splice(currentContactId,1);
+localStorage.setItem("savedContacts", JSON.stringify(contactsData));
+    loadTableData()
 
-const removeElement = function(){
-    let index;
-    
 }
-
-
+deleteButtonsArray.forEach(function (button) {
+    button.addEventListener("click", removeElement);
+})
 // edit contact 
-const changeWindowToEditContact = function (){
-  document.querySelector("div.title").textContent = "Edit contact"; 
-  addContactSubmitButton.style.display = "none";
-  editContactSubmitButton.style.display = "inline";
+const changeWindowToEditContact = function () {
+    document.querySelector("div.title").textContent = "Edit contact";
+    addContactSubmitButton.style.display = "none";
+    editContactSubmitButton.style.display = "inline";
 }
 
-const fillInputs = function (id){
- document.querySelector("#name").value = contactsData[id].name;
- document.querySelector("#phone").value = contactsData[id].phone;
- document.querySelector("#address").value = contactsData[id].address;
- document.querySelector("#city").value = contactsData[id].city;
+const fillInputs = function (id) {
+    document.querySelector("#name").value = contactsData[id].name;
+    document.querySelector("#phone").value = contactsData[id].phone;
+    document.querySelector("#address").value = contactsData[id].address;
+    document.querySelector("#city").value = contactsData[id].city;
 }
 
-const updateContact = function(){
- console.log("test");
+const updateContact = function () {
 
-contactsData[currentContactId].name= document.querySelector("#name").value;
-contactsData[currentContactId].phone = document.querySelector("#phone").value;
-contactsData[currentContactId].address= document.querySelector("#address").value;
-contactsData[currentContactId].city= document.querySelector("#city").value;
+    console.log("test");
+    let name = document.querySelector("#name").value;
+    let phone = document.querySelector("#phone").value;
+    let address = document.querySelector("#address").value;
+    let city = document.querySelector("#city").value;
+
+    if (!name || !phone || !address || !city) {
+        alert("Fill in all fields");
+        return false;
+    };
+
+    contactsData[currentContactId].name = name;
+    contactsData[currentContactId].phone = phone;
+    contactsData[currentContactId].address = address;
+    contactsData[currentContactId].city = city;
 
     localStorage.setItem("savedContacts", JSON.stringify(contactsData));
     clearInputs();
@@ -141,22 +160,22 @@ contactsData[currentContactId].city= document.querySelector("#city").value;
 
 }
 
-editContactSubmitButton.addEventListener('click',updateContact);
+editContactSubmitButton.addEventListener('click', updateContact);
 
 
-const editContact = function (e){
+const editContact = function (e) {
     e.preventDefault();
-showAddContactWindow();
-changeWindowToEditContact();
-const listId = e.target.parentNode.parentNode;
-const id = listId.querySelector("td").textContent;
-currentContactId = parseInt(id)-1;
-console.log(id);
-fillInputs(currentContactId);
+    showAddContactWindow();
+    changeWindowToEditContact();
+    const listId = e.target.parentNode.parentNode;
+    const id = listId.querySelector("td").textContent;
+    currentContactId = parseInt(id) - 1;
+    console.log(id);
+    fillInputs(currentContactId);
 
-console.log("actual contact Id " + currentContactId);
+    console.log("actual contact Id " + currentContactId);
 }
 
-editButtonsArray.forEach(function(button){
-button.addEventListener("click", editContact);
+editButtonsArray.forEach(function (button) {
+    button.addEventListener("click", editContact);
 })
